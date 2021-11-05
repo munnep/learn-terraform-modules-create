@@ -30,3 +30,12 @@ EOF
 
   tags = var.tags
 }
+
+resource "aws_s3_bucket_object" "s3_bucket" {
+  acl          = "public-read"
+  key          = "index.html"
+  bucket       = aws_s3_bucket.s3_bucket.id
+  content      = file("${path.module}/assets/index.html")
+  content_type = "text/html"
+
+}
